@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-foo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.BOT_PAT }}
+      - run: |
+          git config user.name "ironing-trace-bot"
+          git config user.email "189636768+ironing-trace-bot@users.noreply.github.com"
+      - run: echo $(date) > foo.txt
+      - name: Commit and push
+        run: |
+          git commit --no-allow-empty -m "chore: update auto-generated files" || true
+          git push
