@@ -1,0 +1,21 @@
+name: Setup Github App credentials
+description: Gets a github app token and configures git with the app's user
+inputs:
+  app_id:
+    description: The mongodb-devtools-bot app id
+    required: true
+  app_private_key:
+    description: The mongodb-devtools-bot app private private-key
+    required: true
+outputs:
+  token:
+    description: The token to use for the GitHub App
+    value: ${{ steps.app-token.outputs.token }}
+runs:
+  using: "composite"
+  steps:
+    - name: Output
+      run: |
+        echo ${{ inputs.app_id }}
+        echo ${{ inputs.app_private_key }}
+      shell: bash
