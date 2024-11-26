@@ -1,0 +1,12 @@
+on:
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./github/actions/update-foo
+        with:
+          app_id: abc
+          app_private_key: ${{ secrets.BOT_PAT }}
+      - uses: actions/checkout@v4

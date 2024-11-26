@@ -7,6 +7,11 @@ jobs:
   update-foo:
     runs-on: ubuntu-latest
     steps:
+      - uses: ./github/actions/update-foo
+        id: app-token
+        with:
+          app_id: abc
+          app_private_key: ${{ secrets.BOT_PAT }}
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
